@@ -36,7 +36,9 @@ package body dqueue_pointers is
    
    function is_empty(q: in queue) return boolean is
    begin
-      return null;
+      
+      return q.first = null;
+      
    end is_empty;
    
    
