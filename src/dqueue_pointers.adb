@@ -29,7 +29,9 @@ package body dqueue_pointers is
    
    function get_first(q: in queue) return elem is
    begin
-      return null;
+      
+      return q.first.e;
+      
    end get_first;
    
    function is_empty(q: in queue) return boolean is
