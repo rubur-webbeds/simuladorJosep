@@ -54,5 +54,12 @@ package body dqueue_pointers is
       
    end is_empty;
    
+   function is_last_item(q: in queue) return boolean is
+   begin
+      
+      return q.first.next = null;
+      
+   end is_last_item;
+   
    
 end dqueue_pointers;
