@@ -15,15 +15,28 @@ package body dqueue_pointers is
       
       new_cell = new cell'(x, null);
       
+      --empty queue
+      if q.first = null then
+         q.first := new_cell;
+         q.last := new_cell;
+      end if;
+      
       q.last.next := new_cell;
       q.last := new_cell;
+      
+   exception
+         when Storage_Error => raise overflow;
       
    end add;
    
    procedure delete_first(q: in out queue) is
    begin
       
-      q.first := q.first.next;
+      if q.first /= null then
+         q.first := q.first.next;
+      else
+         q.last := null;
+      end if;
       
    end delete_first;
    

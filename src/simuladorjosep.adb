@@ -18,6 +18,7 @@ begin
    llegirInt(passades);
 
 exception
-      when Constraint_Error => Put_Line("'Passades' must be greater than 0");
+   when Constraint_Error => Put_Line("'Passades' must be greater than 0");
+
 end Simuladorjosep;
 
