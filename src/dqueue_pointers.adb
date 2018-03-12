@@ -9,11 +9,11 @@ package body dqueue_pointers is
    
    procedure add(q: in out queue; x: in elem) is
       
-      new_cell: cell;
+      new_cell: pcell;
       
    begin
       
-      new_cell = new cell'(x, null);
+      new_cell := new cell'(x, null);
       
       --empty queue
       if q.first = null then
@@ -59,6 +59,9 @@ package body dqueue_pointers is
       
       return q.first.next = null;
       
+   exception
+      when Constraint_Error => raise bad_use;
+         
    end is_last_item;
    
    
