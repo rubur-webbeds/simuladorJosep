@@ -22,7 +22,9 @@ package body dqueue_pointers is
    
    procedure delete_first(q: in out queue) is
    begin
-      null;
+      
+      q.first := q.first.next;
+      
    end delete_first;
    
    function get_first(q: in queue) return elem is
