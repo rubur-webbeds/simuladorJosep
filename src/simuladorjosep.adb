@@ -39,8 +39,17 @@ procedure Simuladorjosep is
 
    --LET'S PLAY ;)
    procedure murderPlayers(q: in out queue; passades: in Positive) is
+      i: Natural := 0;
+      pla: Player;
    begin
-      null;
+      while not is_last_item(q) and i <= passades loop
+         pla := get_first(q);
+         add(q, pla);
+         delete_first(q);
+         i := i + 1;
+      end loop;
+
+      Put_Line(get_first(q).Name);
    end murderPlayers;
 
 begin
