@@ -6,14 +6,16 @@ with dqueue_pointers;
 
 procedure Simuladorjosep is
 
-   --We will operate with players
+   --We will operate with Players
    type Player is record
 
       Name: Unbounded_String;
 
    end record;
 
+   --Instantite our queue of Players
    package PlayersQueue is new dqueue_pointers(elem => Player); use PlayersQueue;
+
 
    passades: Positive;
    pla_file: File_Type;
@@ -41,7 +43,7 @@ procedure Simuladorjosep is
 
       while not End_Of_File(file) loop
          Get_Line(file, new_player.Name);
-         add(q, new_player);
+         add(q, new_player); --add Player's Name to Queue q
       end loop;
 
    end createQueueFromFile;
@@ -54,6 +56,8 @@ procedure Simuladorjosep is
 
    begin
 
+      --for every loop we will move each Player to the end of
+      --the queue until the target appears at the beginning, to delete it.
       while not is_last_item(q) and i <= passades loop
          pla := get_first(q);
          add(q, pla);
@@ -61,7 +65,7 @@ procedure Simuladorjosep is
          i := i + 1;
       end loop;
 
-      winner := get_first(q);
+      winner := get_first(q); --the last player on the queue
 
    end murderPlayers;
 
@@ -69,7 +73,7 @@ procedure Simuladorjosep is
 
 begin
 
-   Open(pla_file, In_File, "Jugadors.txt");
+   Open(pla_file, In_File, "jugadors.txt");
    createQueueFromFile(pla_queue, pla_file);
 
    Put("Passades: ");
