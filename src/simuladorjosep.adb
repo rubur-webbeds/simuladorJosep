@@ -28,10 +28,6 @@ procedure Simuladorjosep is
 
       pass := Integer'Value(Get_Line);
 
-   exception
-
-      when Constraint_Error => Put_Line("'Passades' must be greater than 0");
-
    end readInt;
 
    --CREATES A QUEUE FROM A TEXT FILE THAT CONTAINS PLAYER NAMES
@@ -47,10 +43,6 @@ procedure Simuladorjosep is
          Get_Line(file, new_player.Name);
          add(q, new_player);
       end loop;
-
-   exception
-
-         when overflow => Put_Line("ERROR: MAIN MEMORY OVERFLOW");
 
    end createQueueFromFile;
 
@@ -71,11 +63,6 @@ procedure Simuladorjosep is
 
       winner := get_first(q);
 
-   exception
-
-      when overflow => Put_Line("ERROR: MAIN MEMORY OVERFLOW");
-      when bad_use => Put_Line("QUEUE 'q' IT'S EMPTY");
-
    end murderPlayers;
 
    ---------MAIN----------
@@ -91,6 +78,12 @@ begin
    murderPlayers(pla_queue, passades, winner);
 
    Put_Line("Guanyador/a: " & winner.Name);
+
+exception
+
+   when Constraint_Error => Put_Line("'Passades' must be greater than 0");
+   when overflow => Put_Line("ERROR: MAIN MEMORY OVERFLOW");
+   when bad_use => Put_Line("QUEUE 'q' IT'S EMPTY");
 
 end Simuladorjosep;
 
